@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}login {% endblock %}
+{% block content %}
+
+<form method="post" action="">
+     {% csrf_token %}
+<!-- partial:index.partial.html -->
+<div id="login-form-wrap">
+  <h2>Login</h2>
+  <form id="login-form">
+    <p>
+    <input type="text" name="name" id="username" placeholder="user name" required><i class="validation"><span></span><span></span></i>
+    </p>
+    <p>
+   <input type="password" name="password" id="email" placeholder="enter password" required><i class="validation"><span></span><span></span></i>
+    </p>
+    <p>
+    <input type="submit" id="login" value="Login">
+    </p>
+  </form>
+    <div id="create-account-wrap">
+    <p><a class="btn btn-warning" href="{% url 'bank:register' %}">register</a><p>
+  </div>
+
+</div>
+    </form>
+{% endblock %}

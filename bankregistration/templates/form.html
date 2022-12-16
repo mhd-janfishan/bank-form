@@ -1,0 +1,77 @@
+{% load static %}
+
+<head>   <link href="{% static 'css/form.css' %}" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Rgistration form</title>
+</head>
+
+<body>
+
+
+{% for mg in messages %}
+{{mg}}
+{% endfor %}
+
+<form method="POST" action="">
+{% csrf_token %}
+    <div class="container">
+    <label>name</label>
+    <input type="text" name="name" id="name" required><br>
+    <label>date of birth </label>
+    <input type="date" name="dob" id="dob" required>
+    <label>age</label>
+    <input type="text" name="age" id="age"><br>
+<div>
+    <label>Gender:</label><br>
+    <input type="radio" value="male" name="gender"><P>male</P>
+    <input type="radio" value="female" name="gender"><p>female</p>
+    <input type="radio" value="other" name="gender"><p>other</p>
+</div>
+    <label>ph number:</label>
+    <input type="number" name="phno" required><br>
+    <label>email</label>
+    <input type="email" name="email"><br>
+    <label>address:</label><BR>
+    <textarea cols="50" rows="3" name="address" value="address"></textarea><br>
+
+     <div style="display:table" class="form-group">
+                        <div class="p-2 mt-2" style="width:25%;"><p>District</p></div>
+                        <div class="p-2 mt-2 ml-2" style="width:65%;"></div>
+                        {{form.district}}
+                    </div>
+
+                    <div style="display:table;" class="form-group">
+                        <div class="p-2 mt-2" style="width:25%;"><p>branch</p></div>
+                        <div class="p-2 mt-2 ml-2" style="width:65%;"></div>
+                        {{form.city}}
+                    </div>
+
+
+
+        </ul>
+    <label>Account type</label>
+    <select>
+        <option>savings account</option>
+        <option>current account</option>
+    </select><br>
+        <div>
+    <label>materials provide:</label>
+        <input type="checkbox" value="debit card"><p>debit card</p>
+        <input type="checkbox" value="credit card"><p>credit card</p>
+        <input type="checkbox" value="cheque book "><p>cheque book</p><br>
+</div>
+
+        <button class="btn btn-warning" type="submit" name="btn3">submit</button>
+
+
+        <a class="btn btn-primary btn3" href="{% url 'bank:logout' %}">logout</a>
+        </div>
+    <script src="{% static 'js/popper.min.js' %}" ></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</form>
+</body>

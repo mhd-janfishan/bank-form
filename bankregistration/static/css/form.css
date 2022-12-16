@@ -1,0 +1,19 @@
+.container{
+        padding:20px;
+        margin-left:20%;
+        margin-right:20%;
+        background:rgba(0,0,10,0.9);
+        opacity:0.8
+}
+input{
+        display:table;
+}
+
+ label{
+        font-size:20px;
+        color:white;
+        }
+ p{
+   color:silver;
+   }
+
