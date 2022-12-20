@@ -70,7 +70,7 @@ def Submit(request):
             form.save()
             print('form saved')
             messages.success(request, 'Application Accepted.')
-            return render(request, 'form.html', {'form': form.cleaned_data})
+            return redirect('bank:sub_info')
         else:
             print(form.errors)
 
@@ -78,7 +78,11 @@ def Submit(request):
     return render(request,'form.html',{'form':form})
 
 def branches(request):
-    branch_id = request.GET.get('branch_id')
-    print(branch_id)
+    branch_id = request.GET.get('countryId')
+    
     cities =Branch.objects.filter(branch_id=branch_id)
     return render(request,'branch.html', {'cities':cities})
+
+def sub_info(request,form_id):
+    info=Form.objects.get(id=form_id)
+    return render(request,'success.html',{ 'info':info })
