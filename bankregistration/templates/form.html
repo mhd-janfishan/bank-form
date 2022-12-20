@@ -10,62 +10,15 @@
 </head>
 
 <body>
-
-
-{% for mg in messages %}
-{{mg}}
-{% endfor %}
-
-<form method="POST" action="">
+    <div class="container" >
+<form id="personForm" method="POST" data-cities-url="/ajax/load_branch/" enctype="multipart/form-data" action="">
 {% csrf_token %}
-    <div class="container">
-    <label>name</label>
-    <input type="text" name="name" id="name" required><br>
-    <label>date of birth </label>
-    <input type="date" name="dob" id="dob" required>
-    <label>age</label>
-    <input type="text" name="age" id="age"><br>
-<div>
-    <label>Gender:</label><br>
-    <input type="radio" value="male" name="gender"><P>male</P>
-    <input type="radio" value="female" name="gender"><p>female</p>
-    <input type="radio" value="other" name="gender"><p>other</p>
-</div>
-    <label>ph number:</label>
-    <input type="number" name="phno" required><br>
-    <label>email</label>
-    <input type="email" name="email"><br>
-    <label>address:</label><BR>
-    <textarea cols="50" rows="3" name="address" value="address"></textarea><br>
-
-     <div style="display:table" class="form-group">
-                        <div class="p-2 mt-2" style="width:25%;"><p>District</p></div>
-                        <div class="p-2 mt-2 ml-2" style="width:65%;"></div>
-                        {{form.district}}
-                    </div>
-
-                    <div style="display:table;" class="form-group">
-                        <div class="p-2 mt-2" style="width:25%;"><p>branch</p></div>
-                        <div class="p-2 mt-2 ml-2" style="width:65%;"></div>
-                        {{form.city}}
-                    </div>
+     <div style="display:table">
+          {{form.as_p}}
+            </div>
+    <button type="submit">submit</button>
 
 
-
-        </ul>
-    <label>Account type</label>
-    <select>
-        <option>savings account</option>
-        <option>current account</option>
-    </select><br>
-        <div>
-    <label>materials provide:</label>
-        <input type="checkbox" value="debit card"><p>debit card</p>
-        <input type="checkbox" value="credit card"><p>credit card</p>
-        <input type="checkbox" value="cheque book "><p>cheque book</p><br>
-</div>
-
-        <button class="btn btn-warning" type="submit" name="btn3">submit</button>
 
 
         <a class="btn btn-primary btn3" href="{% url 'bank:logout' %}">logout</a>
@@ -74,4 +27,23 @@
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
 </form>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  $("#id_district").change(function () {
+    var url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
+    var countryId = $(this).val();  // get the selected country ID from the HTML input
+
+    $.ajax({                       // initialize an AJAX request
+      url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+      data: {
+        'countryId': countryId       // add the country id to the GET parameters
+      },
+      success: function (data) {   // `data` is the return of the `load_cities` view function
+
+        $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+      }
+    });
+
+  });
+</script>
 </body>
